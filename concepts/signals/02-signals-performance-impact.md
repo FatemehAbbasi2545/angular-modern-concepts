@@ -79,5 +79,18 @@ For a typical enterprise Angular application with ChangeDetectionStrategy.OnPush
 
 <b>For complex dashboards, data-heavy UIs, or real-time apps:</b>This is where Signals truly matter. When you have live-updating data streams, Signals ensure that only the specific cells, rows, or chart elements that actually changed get re-rendered. This can be the difference between a janky 20 FPS experience and a smooth 60 FPS one.
 
+## One Important Caveat
+This granular rendering only works when templates read Signals directly — for example {{ mySignal() }} or [value]="mySignal()". If you pass a Signal's value to a child component via @Input(), the child component still updates via the normal input-settling mechanism, though Angular 18+ is optimizing this path as well.
+
+```typescript
+// ✅ Granular — only this binding updates
+<span>{{ status() }}</span>
+
+// ✅ Also granular
+<my-component [value]="status()" />
+
+// ⚠️ Caution: passing a computed Signal to many children
+// still triggers input updates for each child, but without a tree walk
+```
 
 

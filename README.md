@@ -7,7 +7,7 @@ This repository is a comprehensive and hands-on training course for learning *Mo
 ```bash
 git clone https://github.com/FatemehAbbasi2545/angular-modern-concepts.git
 
-## 🤝 Contributing
+- ## Contributing
 Contributions are welcome! If you have ideas for improvements, bug fixes, or adding new sections, please follow these steps:
 
 1.  Fork the repository.

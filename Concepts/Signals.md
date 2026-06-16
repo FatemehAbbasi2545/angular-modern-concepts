@@ -130,8 +130,23 @@ export class LoginFormComponent {
 ```
 
 ## When NOT to Use Signals
+Use Case | Reason
+|---|---
+| Complex async streams | RxJS operators (switchMap, combineLatest, debounceTime, catchError) are still superior for multi-step async pipelines
+| Debouncing / Throttling | Signals don't provide these natively; RxJS remains the right tool
+| Error recovery chains | 	retry, retryWhen, and catchError are much more ergonomic in RxJS
+| Large-scale state management | NgRx, Elf, or similar libraries still offer more structure for complex app-wide state
+| Interop with existing RxJS-heavy codebases | Mixing Signals and Observables is fine, but a full migration may not be justified (Combine a stream with several operations)
 
+In modern Angular (17+), the recommended architecture is:
 
+<ul>
+  <li><code>Local state → </code> Signals + computed</li>
+  <li><code>Async data pipelines → </code> RxJS</li>
+  <li><code>Connecting the two → </code> toSignal() and toObservable()</li>
+</ul>
+
+Signals and RxJS are complementary, not competitors. Signals handle synchronous reactive state elegantly, while RxJS continues to excel at async event streams and complex transformations.
 
 
 

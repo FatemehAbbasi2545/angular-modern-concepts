@@ -141,9 +141,9 @@ Use Case | Reason
 In modern Angular (17+), the recommended architecture is:
 
 <ul>
-  <li><h3>Local state → </h3> Signals + computed</li>
-  <li><h3>Async data pipelines → </h3> RxJS</li>
-  <li><h3>Connecting the two → </h3> toSignal() and toObservable()</li>
+  <li><h1>Local state → </h1> Signals + computed</li>
+  <li><h1>Async data pipelines → </h1> RxJS</li>
+  <li><h1>Connecting the two → </h1> toSignal() and toObservable()</li>
 </ul>
 
 Signals and RxJS are complementary, not competitors. Signals handle synchronous reactive state elegantly, while RxJS continues to excel at async event streams and complex transformations.

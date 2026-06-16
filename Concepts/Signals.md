@@ -18,8 +18,8 @@ Signals are reactive containers that notify consumers when their value changes. 
 <h4>1. Local Component State</h4>
 Replace simple component properties with Signals for better reactivity and clarity.
 
+typescript
 <div>
-  <span>typescript</span>
   <code class="hljs language-typescript">
     <span>@Component</span>({...})
     <span>export</span><span>class</span><span>SearchComponent</span> {

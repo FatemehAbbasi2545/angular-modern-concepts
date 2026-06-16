@@ -1,5 +1,5 @@
 # angular-modern-concepts
-Master the latest concepts and techniques in Angular development (version 22+)
+Master the latest concepts and techniques in Angular development
 
 This repository is a comprehensive and hands-on training course for learning *Modern Angular (v22+). The goal of this course is to introduce the latest concepts, best practices, and essential tools for building modern, scalable web applications with Angular.
 

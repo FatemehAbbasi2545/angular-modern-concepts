@@ -1,3 +1,0 @@
-
-## What exactly is a Signal?
->A Signal is a reactive container for a value. When its value changes, it automatically notifies and updates any part of the application that depends on it.

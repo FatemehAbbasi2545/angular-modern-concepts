@@ -18,21 +18,25 @@ Signals are reactive containers that notify consumers when their value changes. 
 <h4>1. Local Component State</h4>
 Replace simple component properties with Signals for better reactivity and clarity.
 
-typescript
-@Component({...})
-export class SearchComponent {
-  searchTerm = signal('');
-  isLoading = signal(false);
-  results = signal<User[]>([]);
-
-  search(query: string) {
-    this.isLoading.set(true);
-    this.service.search(query).subscribe(res => {
-      this.results.set(res);
-      this.isLoading.set(false);
-    });
-  }
-}
+<div>
+  <span>typescript</span>
+  <code class="hljs language-typescript">
+    <span>@Component</span>({...})
+    <span>export</span><span>class</span><span>SearchComponent</span> {
+      searchTerm = <span>signal</span>(<span>''</span>);
+      isLoading = <span>signal</span>(<span>false</span>);
+      results = signal&lt;<span>User</span>[]&gt;([]);
+    
+      <span>search</span>(<span>query: <span>string</span></span>) {
+        <span>this</span>.<span>isLoading</span>.<span>set</span>(<span>true</span>);
+          <span>this</span>.<span>service</span>.<span>search</span>(query).<span>subscribe</span>(<span><span                      >res</span> =&gt;</span> {
+          <span>this</span>.<span>results</span>.<span>set</span>(res);
+          <span>this</span>.<span>isLoading</span>.<span>set</span>(<span>false</span>);
+        });
+      }
+    }
+  </code>
+</div>
 
 Templates automatically track Signal dependencies — Angular only updates the DOM nodes affected by the change, bypassing full component tree checks.
 

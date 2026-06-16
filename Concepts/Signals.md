@@ -58,6 +58,83 @@ export class MyComponent {
 
 If count changes, Angular only re-evaluates the {{ count() }} expression and patches the button's text node. The h1 and p elements are untouched — they never even get checked.
 
+<h4>2. Dependent Calculations (Derived State with computed)</h4>
+Use computed to define state that depends on other Signals. It only recalculates when its dependencies change.
+
+```typescript
+items = signal<CartItem[]>([]);
+totalPrice = computed(() => 
+  this.items().reduce((sum, item) => sum + item.price * item.quantity, 0)
+);
+itemCount = computed(() => this.items().length);
+```
+
+<h4>3. Shared State Between Components (signal + inject)</h4>
+For simple cross-component state, Signals can replace RxJS BehaviorSubject without the subscription overhead.
+
+```
+typescript
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private user = signal<User | null>(null);
+  readonly user$ = this.user.asReadonly();
+
+  login(username: string, password: string) {
+    this.http.post<User>('/login', { username, password })
+      .subscribe(user => this.user.set(user));
+  }
+}
+```
+
+<h4>4. Reactive Component Inputs</h4>
+Replace @Input() with input() to get a reactive Signal that can be used in computed or effect.
+
+```typescript
+@Component({...})
+export class UserCardComponent {
+  user = input<User>();
+  role = input<'admin' | 'user'>('user');
+  userId = input.required<string>();
+  
+  displayName = computed(() => 
+    this.user()?.name ?? `User #${this.userId()}`
+  );
+}
+```
+
+<h4>5. Side Effects with effect</h4>
+Run imperative code automatically when Signal dependencies change. Useful for logging, syncing with localStorage, or triggering non-template updates.
+
+```typescript
+effect(() => {
+  const count = this.notifications().length;
+  if (count > 0) {
+    console.log(`${count} new notification(s)`);
+  }
+});
+```
+
+<h4>6. Simple Form State & Validation</h4>
+For forms that don't require FormsModule or ReactiveFormsModule.
+
+```typescript
+@Component({...})
+export class LoginFormComponent {
+  username = signal('');
+  password = signal('');
+  
+  isFormValid = computed(() => 
+    this.username().length > 0 && this.password().length > 3
+  );
+}
+```
+
+## When NOT to Use Signals
+
+
+
+
+
 
 
 

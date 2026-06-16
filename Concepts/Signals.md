@@ -27,7 +27,6 @@ Replace simple component properties with Signals for better reactivity and clari
         searchTerm = <span>signal</span>(<span>''</span>);
         isLoading = <span>signal</span>(<span>false</span>);
         results = signal&lt;<span>User</span>[]&gt;([]);
-
         search(<span>query: <span>string</span></span>) {
       
         <span>search</span>(<span>query: <span>string</span></span>) {
